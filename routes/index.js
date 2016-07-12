@@ -3,7 +3,7 @@ var express = require('express');
 var router = express.Router();
 var co = require('co');
 var request = require('co-request');
-const API = "http://localhost:3000/";
+var API = "http://localhost:3000/";
 /* GET home page. */
 router.get('/', co.wrap(function* (req, res) {
     try{
