@@ -1,0 +1,58 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+<div class="row well" >
+    <form  novalidate  ng-submit="bookAppointment()" name='bookingForm'>
+        <div class="form-group">
+            <label class="control-label">Your Name *</label>
+            <input type="text" ng-model="appointment.username" name="username" class="form-control" required/>
+        </div>
+        <div class="form-group"> 
+            <label>Beautician - Location *</label>          
+            <select name="name" ng-model='appointment.beautician_id' required class="form-control" >
+                <option value="" disabled selected>Choose beautician</option>
+                {% for b in beauticians %}
+                <option value="[[b.id]]">[[b.name]] - [[b.address]]</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div style="display:inline-block; min-height:290px;" class="form-group">
+            <label for="date" class="control-label">Day *</label>
+            <uib-datepicker ng-model="appointment.dt" class="well well-sm" datepicker-options="options"></uib-datepicker>
+        </div>
+
+        <div class="form-group">
+            <label for="date" class="control-label">Start Time *</label>
+            <select   ng-model="appointment.startTime" class="form-control">
+                <option value="" disabled selected>Choose start time</option>
+                <option ng-repeat="t in time"  value="{{t}}">{{t}}</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <select  ng-model="appointment.endTime" class="form-control">
+                <option value="" disabled selected>Choose end time</option>
+                <option ng-repeat="t in time"  value="{{t}}">{{t}}</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label class="control-label">Description * </label>
+            <textarea class="form-control" ng-model="appointment.description" required></textarea>
+        </div>
+        <br/>
+        <div class="form-group">
+            <button class="btn btn-primary" class="form-control"   type="submit" >Submit
+
+            </button>
+        </div>     
+    </form>
+
+
+</div>
+
+
+{% endblock %}
+
+
